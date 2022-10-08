@@ -62,7 +62,7 @@ def get_range(number_quarter):
 # двух точек и находит расстояние между ними в 2D пространстве.
 
 def get_distance(ax,ay,bx,by):
-    return math.sqrt(math.pow(bx-ax,2)+math.pow(by-ay,2))
+    return round(math.sqrt(math.pow(bx-ax,2)+math.pow(by-ay,2)),23)
 
 #print(get_distance(int(input('Введите A(x): ')),int(input('Введите A(y): ')),
 #int(input('Введите B(x): ')),int(input('Введите B(y): '))))
