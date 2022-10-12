@@ -82,8 +82,6 @@ def inner_join(array_one,array_two):
                 array_result.append(array_one[one_ind])
                 array_two[two_ind]=None
                 break
-    print(array_one)
-    print(array_two)
     print(array_result)
 
 #array_one=[1, 2, 3, 2, 0]
