@@ -73,8 +73,7 @@ def get_negafibonacci_list(number):
         i=int(curr_value+prev_value)
         list_numbers.append(i)
         list_numbers.insert(0,-i if f%2==0 else i) 
-        prev_value=curr_value
-        curr_value=i
+        prev_value, curr_value=curr_value,i
     return list_numbers
 
-print(get_negafibonacci_list(int(input('Введите число: '))))
+#print(get_negafibonacci_list(int(input('Введите число: '))))
