@@ -172,9 +172,11 @@ def checkWin(arr):
 
 #Реализуйте RLE алгоритм: реализуйте модуль сжатия и восстановления данных.
     
-def compress_run_length_encoding(text):
+def compress_run_length_encoding(filename):
     res=''
     counter,i=0,0
+    with open('GPyS5H/line.txt','r',encoding='utf-8') as f:
+        text=f.readline()
     while(i<len(text)-1):
         counter=1
         while(i<len(text)-1 and text[i]==text[i+1]):
@@ -184,7 +186,7 @@ def compress_run_length_encoding(text):
         i+=1
     with open('GPyS5H/fileRLE.txt','w',encoding='utf-8') as f:
         f.write(res)
-#compress_run_length_encoding('aaababbcbbb')
+#compress_run_length_encoding('line.txt')
 
 def recovery_run_lenght_encoding(filename):
     rle=''
@@ -199,4 +201,4 @@ def recovery_run_lenght_encoding(filename):
     with open('GPyS5H/recovery_line.txt','w',encoding='utf-8') as f:
         f.write(recov_line)
 
-recovery_run_lenght_encoding('GPyS5H/fileRLE.txt')
+#recovery_run_lenght_encoding('GPyS5H/fileRLE.txt')
