@@ -8,32 +8,33 @@ exit_to_menu=lambda x: menu() if x=='0' else 0
 def menu():
     while(True):
         view.menu_view()
-        a=input('Введите действие:')
-        if a=='0':exit()
-        elif a=='1':find_by(1)
-        elif a=='2':find_by(2)
-        elif a=='3':add()
-        elif a=='4':show_all()
-        elif a=='5':upload()
-        elif a=='6':import_data()
+        action=view.get_input_value('Введите действие')
+        if action=='0':exit()
+        elif action=='1':find_by(1)
+        elif action=='2':find_by(2)
+        elif action=='3':add()
+        elif action=='4':show_all()
+        elif action=='5':upload()
+        elif action=='6':import_data()
 
 def add():
     re_tel =r'^(\+7|7|8)?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}$'
     while(True):
         view.add_view()
         while(True):
-            number=input('Введите номер телефона: ')
+            number=view.get_input_value('Введите номер телефона')
             if(number=='0' or re.match(re_tel,number)):break
         exit_to_menu(number)
-        firstname=input('Введите имя: ')
+        firstname=view.get_input_value('Введите имя')
         exit_to_menu(number)
-        lastname=input('Введите фамилию: ')
+        lastname=view.get_input_value('Введите фамилию')
         exit_to_menu(number)
-        description=input('Введите описание: ')
+        description=view.get_input_value('Введите описание')
         exit_to_menu(number)
         con=model.Record(number,firstname,lastname,description)
-        model.write_file(con)
-        print('\x1b[1;32;40m' + 'Добавлено!' + '\x1b[0m')
+        r=model.write_file(con)
+        if r==-1: view.show_red_string('Ошибка записи в файл')
+        else: view.show_green_string('Контакт добавлен')
         time.sleep(0.7)
         add() 
 
@@ -41,37 +42,50 @@ def find_by(val):
     while(True):
         number=view.find_view(val)
         model.print_find_results(model.find_by(val,number))
-        number=input('->: ')
+        number=view.get_input_value('->')
         exit_to_menu(number)
         find_by(val)
 
 def upload():
     while(True):
         view.upload_view()
-        number=input('Выберите пункт: ')
+        number=view.get_input_value('Выберите пункт')
         if(number in '012'):
-            if number=='1': model.upload_to_json()
-            elif number=='2': model.upload_to_xml()
+            if number=='1': 
+                jsonr=model.upload_to_json()
+                if jsonr==1: view.show_green_string('Создан файл contacts.json')
+                elif jsonr==-1: view.show_red_string('Ошибка записи в файл') 
+                time.sleep(1.2)
+            elif number=='2': 
+                xmlr=model.upload_to_xml()
+                if xmlr==1: view.show_green_string('Создан файл contacts.xml')
+                elif xmlr==-1: view.show_red_string('Ошибка записи в файл')
+                time.sleep(1.2)
             menu()
-            break
 
 def show_all():
     while(True):
         view.show_all_view()
         model.print_contacts()
-        number=input('->: ')
+        number=view.get_input_value('->')
         exit_to_menu(number)
         show_all()
     
 def import_data():
     while(True):
         view.import_view()
-        number=input('Выберите пункт: ')
+        number=view.get_input_value('Выберите пункт')
         exit_to_menu(number)
         if(number=='1'):
-            model.import_from_json()
+            rjson=model.import_from_json()
+            if rjson==1: view.show_green_string('Контакты успешно испортированы')
+            elif rjson==-1: view.show_red_string('Ошибка импорта')
+            time.sleep(1.2)
             menu()
         elif(number=='2'):
-            model.import_from_xml()
+            rxml=model.import_from_xml()
+            if rxml==1: view.show_green_string('Контакты успешно испортированы')
+            elif rxml==-1: view.show_red_string('Ошибка импорта')
+            time.sleep(1.2)
             menu()
         break

@@ -5,7 +5,19 @@ clear = lambda: os.system('clear')
 def header(headername):
     clear()
     print('0 - Назад')
-    print('\x1b[0;33;40m' + '       '+f'{headername}'+'\x1b[0m')
+    show_yellow_string(headername)
+
+def get_input_value(text):
+    return input(f'{text}:')
+
+def show_yellow_string(text):
+    print('\x1b[1;33;40m' + '       '+f'{text}'+'\x1b[0m')
+
+def show_red_string(text):
+    print('\x1b[1;31;40m' + f'{text}'+'\x1b[0m')
+
+def show_green_string(text):
+    print('\x1b[1;32;40m'+f'{text}'+'\x1b[0m')
 
 def menu_view():
     header('Меню')
@@ -24,9 +36,8 @@ def find_view(val):
     if val==1: title,desc="номеру","номер телефона"
     elif val==2: title,desc="имени","имя абонента"
     print('0 - Назад')
-    print('\x1b[0;33;40m' + '       Поиск по '+f'{title}'+'\x1b[0m')
-    number=input('Введите '+f'{desc}'+': ')
-    return number
+    show_yellow_string('Поиск по '+f'{title}')
+    return get_input_value('Введите '+f'{desc}')
 
 def upload_view():
     header('Экспорт')
