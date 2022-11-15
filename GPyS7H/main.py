@@ -1,3 +1,3 @@
-import view
+import controller
 
-view.menu()
+controller.menu()
