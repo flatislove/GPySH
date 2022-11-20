@@ -26,6 +26,8 @@ def menu_add():
         add_department()
     if add=="3":
         add_project()
+    if add=="0":
+        menu()
 
 def menu_get():
     get=view.get_menu_view()
@@ -35,6 +37,8 @@ def menu_get():
         get_all_departments()
     if get=="3":
         get_all_projects()
+    if get=="0":
+        menu()
 
 def menu_export():
     exp=view.export_menu_view()
@@ -44,6 +48,8 @@ def menu_export():
         export_departments()
     if exp=="3":
         export_projects()
+    if exp=="0":
+        menu()
 
 def menu_import():
     imp=view.import_menu_view()
@@ -53,6 +59,8 @@ def menu_import():
         import_departments()
     if imp=="3":
         import_projects()
+    if imp=="0":
+        menu()
 
 def add_employee():
     departments=db.get_all_departments()
