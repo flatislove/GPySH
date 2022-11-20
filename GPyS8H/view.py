@@ -52,11 +52,12 @@ def get_menu_parameter_view():
     while(True):
         header("Get with parameter")
         print("1 get employees by department")
-        print("2 get all departments(-)")
-        print("3 get all projects(-)")
+        print("2 get employess by name")
+        print("3 get employee by project")
+        print("4 get employee by number")
         print()
         action=input("enter action:")
-        if action in "0123": return action
+        if action in "01234": return action
 
 def export_menu_view():
     while(True):
@@ -145,3 +146,7 @@ def get_employees_by_department_view(data):
     while(True):
         dep=input("enter id department:")
         if dep in str_dep: return dep
+
+def get_employees_by_name_view():
+    header("Employee by name")
+    return input("enter part of firstname or lastname: ")

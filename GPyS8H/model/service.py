@@ -11,7 +11,7 @@ def upload_to_json(data,filename):#employee,department,project
         print("[INFO] Error while working with upload to Json: ",ex)
     return 1
 
-    #all data for employee
+    #all data for employee(for export json)
 
     # SELECT "Employee".firstname, "Employee".lastname, "Department".name,
 	# 	"Employee".position, "Employee".number
@@ -19,14 +19,14 @@ def upload_to_json(data,filename):#employee,department,project
     # LEFT JOIN "Department"
 	#     ON "Department".id="Employee".department_id;
 
-    #all data for projects
+    #all data for projects(for export json)
     # SELECT "Project".name, "Employee".firstname, "Employee".lastname,
 	# 	"Employee".position
     # FROM public."Project"
     # LEFT JOIN "Employee"
 	#     ON "Employee".id="Project".employee_id;
 
-    #all data for departments
+    #all data for departments(for export json)
 
     # SELECT "Department".name
     # FROM public."Department"

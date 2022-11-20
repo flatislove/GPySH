@@ -5,4 +5,4 @@ class Project:
         self.employee_id=employee_id
 
     def __str__(self):
-        return f"Id:{self.id} Name:{self.name} Employee:{self.employee_id}"
+        return f"Id: {self.id}; Name: {self.name}; Employee: {self.employee_id}"

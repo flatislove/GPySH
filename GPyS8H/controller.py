@@ -5,6 +5,8 @@ import model.project as proj
 import model.employee as emp
 import model.service as service
 
+#menu
+
 def menu():
     action=view.menu_view()
     if action=="1":
@@ -47,9 +49,13 @@ def menu_get_with_parameter():
     if get=="1":
         get_employees_by_department()
     if get=="2":
-        pass
+        get_employee_by_name()
     if get=="3":
-        pass
+        get_employee_by_project()
+    if get=="4":
+        get_employee_by_number()
+    if get=="0":
+        menu()
 
 def menu_export():
     exp=view.export_menu_view()
@@ -73,6 +79,8 @@ def menu_import():
     if imp=="0":
         menu()
 
+#add
+
 def add_employee():
     departments=db.get_all_departments()
     data=view.add_employee_view(departments)
@@ -92,6 +100,8 @@ def add_project():
     db.add_project(project)
     menu_add()
 
+#get
+
 def get_all_employees():
     data=db.get_all_employee()
     view.get_employee_view(data)
@@ -110,9 +120,21 @@ def get_all_projects():
 def get_employees_by_department():
     data_dep=db.get_all_departments()
     department=view.get_employees_by_department_view(data_dep)
-    
     data=db.get_employee_by_department(department)
     view.get_employee_view(data)
+
+def get_employee_by_name():
+    name=view.get_employees_by_name_view()
+    data=db.get_employee_by_name(name)
+    view.get_employee_view(data)
+
+def get_employee_by_project():
+    pass
+
+def get_employee_by_number():
+    pass
+
+#export
 
 def export_employees():
     pass
@@ -122,6 +144,8 @@ def export_departments():
 
 def export_projects():
     pass
+
+#import
 
 def import_employees():
     pass

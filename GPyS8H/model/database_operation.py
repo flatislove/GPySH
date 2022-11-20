@@ -74,7 +74,8 @@ def add_employee(employee):
     add_to_database(add)
 
 def add_department(department):
-    add=f"""INSERT INTO "Department"(name) VALUES('{department.name}');"""
+    add=f"""INSERT INTO "Department"(name) 
+            VALUES('{department.name}');"""
     add_to_database(add)
 
 def add_project(project):
@@ -83,14 +84,16 @@ def add_project(project):
     add_to_database(add)
 
 def get_all_employee():
-    get=get_from_database("""SELECT id, firstname, lastname, department_id, number,position FROM "Employee";""")
+    get=get_from_database(""" SELECT id, firstname, lastname, department_id, number,position 
+                              FROM "Employee";""")
     employees=[]
     for i in get:
         employees.append(employee.Employee(i[0],i[1],i[2],i[3],i[4],i[5]))
     return employees
 
 def get_all_departments():
-    get=get_from_database("""SELECT id,name FROM "Department";""")
+    get=get_from_database(""" SELECT id,name 
+                              FROM "Department";""")
     departments=[]
     for i in get:
         print(i)
@@ -98,7 +101,8 @@ def get_all_departments():
     return departments
 
 def get_all_projects():
-    get=get_from_database("""SELECT id, name, employee_id FROM "Project";""")
+    get=get_from_database(""" SELECT id, name, employee_id 
+                              FROM "Project";""")
     projects=[]
     for i in get:
         projects.append(project.Project(i[0],i[1],i[2]))
@@ -112,8 +116,24 @@ def get_employee_by_department(department):
                               WHERE "Employee".department_id='{department}';""")
     employees=[]
     for i in get:
-      employees.append(employee.Employee_Dep(i[0],i[1],i[2]))
+      employees.append(employee.Employee_By(i[0],i[1],i[2]))
     return employees
+
+def get_employee_by_name(name):
+  get=get_from_database(f"""SELECT "Employee".firstname, "Employee".lastname, "Employee".position
+                              FROM public."Employee"
+                                LEFT JOIN "Department"
+	                                ON "Employee".department_id="Department".id
+                              WHERE "Employee".firstname LIKE '%{name}%'
+                                  OR "Employee".lastname LIKE '%{name}%';""")
+  employees=[]
+  for i in get:
+    employees.append(employee.Employee_By(i[0],i[1],i[2]))
+  return employees
 
 def get_employee_by_project(project):
     pass
+
+def get_employee_by_number(number):
+  pass
+

@@ -4,4 +4,4 @@ class Department:
         self.name=name
 
     def __str__(self):
-        return f"Id:{self.id} Name:{self.name}"
+        return f"Id: {self.id}; Name: {self.name}"
