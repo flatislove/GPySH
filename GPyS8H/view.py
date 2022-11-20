@@ -69,7 +69,7 @@ def add_employee_view(departments):
             str_dep+=str(i.id)
         print(str_dep)
         while(True):
-            department=input("enter department:")
+            department=input("enter department id:")
             if department in str_dep: break
         number=input("enter phone number:")
         position=input("enter position:")
