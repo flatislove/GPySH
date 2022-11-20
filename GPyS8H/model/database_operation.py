@@ -105,7 +105,15 @@ def get_all_projects():
     return projects
 
 def get_employee_by_department(department):
-    pass
+    get=get_from_database(f""" SELECT "Employee".firstname, "Employee".lastname, "Employee".position
+                              FROM public."Employee"
+                                LEFT JOIN "Department"
+	                                ON "Employee".department_id="Department".id
+                              WHERE "Employee".department_id='{department}';""")
+    employees=[]
+    for i in get:
+      employees.append(employee.Employee_Dep(i[0],i[1],i[2]))
+    return employees
 
 def get_employee_by_project(project):
     pass

@@ -12,8 +12,10 @@ def menu():
     if action=="2":
         menu_get()
     if action=="3":
-        menu_export()
+        menu_get_with_parameter()
     if action=="4":
+        menu_export()
+    if action=="5":
         menu_import()
     if action=="0":
         exit()
@@ -39,6 +41,15 @@ def menu_get():
         get_all_projects()
     if get=="0":
         menu()
+
+def menu_get_with_parameter():
+    get=view.get_menu_parameter_view()
+    if get=="1":
+        get_employees_by_department()
+    if get=="2":
+        pass
+    if get=="3":
+        pass
 
 def menu_export():
     exp=view.export_menu_view()
@@ -96,9 +107,14 @@ def get_all_projects():
     view.get_projects_view(data)
     menu_get()
 
+def get_employees_by_department():
+    data_dep=db.get_all_departments()
+    department=view.get_employees_by_department_view(data_dep)
+    
+    data=db.get_employee_by_department(department)
+    view.get_employee_view(data)
+
 def export_employees():
-    data=db.get_all_employee()
-    service.export()
     pass
 
 def export_departments():
