@@ -1,9 +1,9 @@
 import os
 import psycopg2
 from config import host,user,password,db_name
-import GPyS8H.model.employee as employee
-import GPyS8H.model.department as department
-import GPyS8H.model.project as project
+import model.employee as employee
+import model.department as department
+import model.project as project
 
 def get_from_database(text):
   try:

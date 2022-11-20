@@ -1,4 +1,4 @@
-import GPyS8H.model.database_operation as db
+import model.database_operation as db
 import view
 import controller
 

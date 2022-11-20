@@ -1,8 +1,9 @@
 import view
-import database_operation as db
-import department as dep_mod
-import project as proj
-import employee as emp
+import model.database_operation as db
+import model.department as dep_mod
+import model.project as proj
+import model.employee as emp
+import model.service as service
 
 def menu():
     action=view.menu_view()
@@ -86,6 +87,8 @@ def get_all_projects():
     menu_get()
 
 def export_employees():
+    data=db.get_all_employee()
+    service.export()
     pass
 
 def export_departments():
