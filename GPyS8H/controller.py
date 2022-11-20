@@ -15,6 +15,8 @@ def menu():
         menu_export()
     if action=="4":
         menu_import()
+    if action=="0":
+        exit()
     
 def menu_add():
     add=view.add_menu_view()

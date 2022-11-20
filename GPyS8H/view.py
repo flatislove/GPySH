@@ -2,10 +2,23 @@ import os
 
 clear = lambda: os.system('clear')
 
+def header(headername):
+    clear()
+    print('0 - Назад')
+    show_yellow_string(headername)
+
+def show_yellow_string(text):
+    print('\x1b[1;33;40m' + '       '+f'{text}'+'\x1b[0m')
+
+def show_red_string(text):
+    print('\x1b[1;31;40m' + f'{text}'+'\x1b[0m')
+
+def show_green_string(text):
+    print('\x1b[1;32;40m'+f'{text}'+'\x1b[0m')
+
 def menu_view():
     while(True):
-        clear()
-        print("    Menu")
+        header("Menu")
         print("1 Add")
         print("2 Get")
         print("3 Export")
@@ -16,8 +29,7 @@ def menu_view():
 
 def add_menu_view():
     while(True):
-        clear()
-        print("    Add")
+        header("Add")
         print("1 add employee")
         print("2 add department")
         print("3 add project")
@@ -27,8 +39,7 @@ def add_menu_view():
 
 def get_menu_view():
     while(True):
-        clear()
-        print("    Get")
+        header("Get")
         print("1 get all employees")
         print("2 get all departments")
         print("3 get all projects")
@@ -38,8 +49,7 @@ def get_menu_view():
 
 def export_menu_view():
     while(True):
-        clear()
-        print("    Export")
+        header("Export")
         print("1 export employees")
         print("2 export departments")
         print("3 export projects")
@@ -49,8 +59,7 @@ def export_menu_view():
 
 def import_menu_view():
     while(True):
-        clear()
-        print("    Import")
+        header("Import")
         print("1 import employees")
         print("2 import departments")
         print("3 import projects")
@@ -60,7 +69,7 @@ def import_menu_view():
 
 def add_employee_view(departments):
     while(True):
-        clear()
+        header("Add employee")
         fname=input("enter firstname:")
         lname=input("enter lastname:")
         str_dep=""
@@ -77,13 +86,13 @@ def add_employee_view(departments):
 
 def add_department_view():
     while(True):
-        clear()
+        header("Add department")
         name=input("enter name department:")
         return name
 
 def add_project_view(employess):
     while(True):
-        clear()
+        header("Add project")
         name=input("enter project name:")
         str_emp=""
         for i in employess:
@@ -95,23 +104,22 @@ def add_project_view(employess):
         return name,employee
 
 def get_employee_view(employees):
-    clear()
+    header("Employees")
     for i in employees:
         print(i)
     print()
     input("press any key: ")
 
 def get_departments_view(departments):
-    clear()
+    header("Departmnets")
     for i in departments:
         print(i)
     print()
     input("press any key: ")
 
 def get_projects_view(projects):
-    clear()
+    header("Projects")
     for i in projects:
         print(i)
     print()
     input("press any key: ")
-
