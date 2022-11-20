@@ -1,9 +1,9 @@
 import os
 import psycopg2
 from config import host,user,password,db_name
-import employee
-import department
-import project
+import GPyS8H.model.employee as employee
+import GPyS8H.model.department as department
+import GPyS8H.model.project as project
 
 def get_from_database(text):
   try:
@@ -14,25 +14,9 @@ def get_from_database(text):
       database=db_name
     )
     connection.autocommit=True
-    # with connection.cursor() as cursor:
-    #   cursor.execute("SELECT version();")
-    #   print(f"Server version: {cursor.fetchone()}")
     with connection.cursor() as cursor:
       cursor.execute(text)
       return cursor.fetchall()
-    # with connection.cursor() as cursor:
-    #   cursor.execute(
-    #     """INSERT INTO "Group"(groupname,description) VALUES('11f','dangerous group');"""
-    #   )
-    #   print("[INFO] Data was successfully inserted")
-    # with connection.cursor() as cursor:
-    #   cursor.execute(
-    #     """SELECT name FROM "Department" WHERE name='11f';"""
-    #   )
-    #   data=cursor.fetchall()
-    #   for i in data:
-    #     print(i)
-
   except Exception as ex:
     print("[INFO] Error while working with Postgres",ex)
   finally:
@@ -58,7 +42,6 @@ def add_to_database(add):
   finally:
     if connection:
       connection.close()
-    #   print("[INFO] Postgres connection closed")
 
 def add_tables():
     sql=        """
