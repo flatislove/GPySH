@@ -1,0 +1,14 @@
+{
+"employees":
+[{"id": 4, "firstname": "fnameTwo", "lastname": "lnameTwo", "department": 4, "number": "324324", "position": "hr"},
+{"id": 6, "firstname": "employeefname1", "lastname": "emplofname1", "department": 4, "number": "342342", "position": "position1"},
+{"id": 7, "firstname": "emp3", "lastname": "emplname3", "department": 6, "number": "23423423", "position": "position2"},
+{"id": 8, "firstname": "fnameTwo14", "lastname": "lnameTwo14", "department": 4, "number": "32477324", "position": "hr"},
+{"id": 9, "firstname": "employeefname16", "lastname": "emplofname16", "department": 4, "number": "3422342", "position": "position1"},
+{"id": 12, "firstname": "employeefname16", "lastname": "emplofname16", "department": 4, "number": "3422342", "position": "position1"},
+{"id": 13, "firstname": "emp17", "lastname": "emplname17", "department": 6, "number": "2342399423", "position": "position2"},
+{"id": 14, "firstname": "fnameTwo14", "lastname": "lnameTwo14", "department": 4, "number": "32477324", "position": "hr"},
+{"id": 15, "firstname": "employeefname16", "lastname": "emplofname16", "department": 4, "number": "3422342", "position": "position1"},
+{"id": 16, "firstname": "employeefname16", "lastname": "emplofname16", "department": 4, "number": "3422342", "position": "position1"},
+{"id": 17, "firstname": "emp17", "lastname": "emplname17", "department": 6, "number": "2342399423", "position": "position2"}]
+}

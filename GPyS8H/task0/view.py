@@ -7,6 +7,11 @@ def header(headername):
     print('0 - Назад')
     show_yellow_string(headername)
 
+def status_add(res):
+    if res==-1: show_red_string("Failed to add data")
+    else: show_green_string("Data add successfully ")
+    input("Press any key:")
+
 def show_yellow_string(text):
     print('\x1b[1;33;40m' + '       '+f'{text}'+'\x1b[0m')
 
@@ -27,7 +32,7 @@ def menu_view():
         print("6 Import")
         print()
         action=input("Введите действие: ")
-        if action in "012345": return action
+        if action in "0123456": return action
 
 def add_menu_view():
     while(True):

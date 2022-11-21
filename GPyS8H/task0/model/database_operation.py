@@ -18,6 +18,7 @@ def get_from_database(text):
       return cursor.fetchall()
   except Exception as ex:
     print("[INFO] Error while working with Postgres",ex)
+    return -1
   finally:
     if connection:
       connection.close()
@@ -38,6 +39,7 @@ def add_to_database(add):
 
   except Exception as ex:
     print("[INFO] Error while working with Postgres",ex)
+    return -1
   finally:
     if connection:
       connection.close()

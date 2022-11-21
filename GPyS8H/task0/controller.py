@@ -23,6 +23,7 @@ def menu():
         menu_import()
     if action=="0":
         exit()
+    else: menu()
     
 def menu_add():
     add=view.add_menu_view()
@@ -34,6 +35,7 @@ def menu_add():
         add_project()
     if add=="0":
         menu()
+    else: menu_add()
 
 def menu_get():
     get=view.get_menu_view()
@@ -45,6 +47,7 @@ def menu_get():
         get_all_projects()
     if get=="0":
         menu()
+    else: menu_get()
 
 def menu_get_with_parameter():
     get=view.get_menu_parameter_view()
@@ -58,6 +61,7 @@ def menu_get_with_parameter():
         get_employee_by_number()
     if get=="0":
         menu()
+    else: menu_get_with_parameter()
 
 def menu_delete():
     get=view.delete_menu_view()
@@ -69,6 +73,7 @@ def menu_delete():
         delete_project()
     if get=="0":
         menu()
+    else: menu_delete()
 
 def menu_export():
     exp=view.export_menu_view()
@@ -80,6 +85,7 @@ def menu_export():
         export_projects()
     if exp=="0":
         menu()
+    else: menu_export()
 
 def menu_import():
     imp=view.import_menu_view()
@@ -91,6 +97,7 @@ def menu_import():
         import_projects()
     if imp=="0":
         menu()
+    else: menu_import()
 
 #add
 
@@ -98,19 +105,22 @@ def add_employee():
     departments=db.get_all_departments()
     data=view.add_employee_view(departments)
     employee=emp.Employee(1,data[0],data[1],data[2],data[3],data[4])
-    db.add_employee(employee)
+    res=db.add_employee(employee)
+    view.status_add(res)
     menu_add()
 
 def add_department():
     data=view.add_department_view()
     department=dep_mod.Department(1,data)
-    db.add_department(department)
+    res=db.add_department(department)
+    view.status_add(res)
     menu_add()
 
 def add_project():
     data=view.add_project_view(db.get_all_employee())
     project=proj.Project(1,data[0],data[1])
-    db.add_project(project)
+    res=db.add_project(project)
+    view.status_add(res)
     menu_add()
 
 #get
@@ -141,7 +151,7 @@ def get_employee_by_name():
     name=view.get_employees_by_name_view()
     data=db.get_employee_by_name(name)
     if not len(data):
-        view.show_red_string("Результаты не найдены")
+        view.show_red_string("results not found")
         input("press any key: ")
     else: 
         view.get_employee_view(data)
@@ -158,8 +168,8 @@ def get_employee_by_number():
     number=view.get_employee_by_number_view()
     data=db.get_employee_by_number(number)
     if not len(data):
-        view.show_red_string("Результаты не найдены")
-        input("press any key: ")
+        view.show_red_string("Results not found")
+        input("Press any key: ")
     else: 
         view.get_employee_view(data)
     menu_get_with_parameter()
@@ -187,21 +197,45 @@ def delete_project():
 #export
 
 def export_employees():
-    pass
+    res=service.export_employee_to_json()
+    if res==1: view.show_green_string("Data was successfully export to JSON")
+    elif res==-1: view.show_red_string("Error while working with export to JSON")
+    input("Press any key: ")
+    menu_export()
 
 def export_departments():
-    pass
+    res=service.export_departments_to_json()
+    if res==1: view.show_green_string("Data was successfully export to JSON")
+    elif res==-1: view.show_red_string("Error while working with export to JSON")
+    input("Press any key: ")
+    menu_export()
 
 def export_projects():
-    pass
+    res=service.export_projects_to_json()
+    if res==1: view.show_green_string("Data was successfully export to JSON")
+    elif res==-1: view.show_red_string("Error while working with export to JSON")
+    input("press any key: ")
+    menu_export()
 
 #import
 
 def import_employees():
-    pass
+    res=service.import_employee_from_json()
+    if res==1: view.show_green_string("Data was successfully import from JSON or already exists")
+    elif res==-1: view.show_red_string("Error while working with import from JSON or the same data exist")
+    input("press any key: ")
+    menu_import()
 
 def import_departments():
-    pass
+    res=service.import_departments_from_json()
+    if res==1: view.show_green_string("Data was successfully import from JSON or already exists")
+    elif res==-1: view.show_red_string("Error while working with import from JSON or the same data exist")
+    input("press any key: ")
+    menu_import()
 
 def import_projects():
-    pass
+    res=service.import_projects_from_json()
+    if res==1: view.show_green_string("Data was successfully import from JSON or already exists")
+    elif res==-1: view.show_red_string("Error while working with import from JSON or the same data exist")
+    input("press any key: ")
+    menu_import()
