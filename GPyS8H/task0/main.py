@@ -1,6 +1,5 @@
 import model.database_operation as db
 import controller
-import service
 
 #Создать информационную систему позволяющую работать с 
 # сотрудниками некой компании

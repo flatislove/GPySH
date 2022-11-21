@@ -10,8 +10,7 @@ def get_from_database(text):
       host=host,
       user=user,
       password=password,
-      database=db_name
-    )
+      database=db_name)
     connection.autocommit=True
     with connection.cursor() as cursor:
       cursor.execute(text)
@@ -22,7 +21,6 @@ def get_from_database(text):
   finally:
     if connection:
       connection.close()
-      # print("[INFO] Postgres connection closed")
 
 def add_to_database(add):
   try:
@@ -30,13 +28,10 @@ def add_to_database(add):
       host=host,
       user=user,
       password=password,
-      database=db_name
-    )
+      database=db_name)
     connection.autocommit=True
     with connection.cursor() as cursor:
         cursor.execute(add)
-        # print("[INFO] Data was successfully inserted")
-
   except Exception as ex:
     print("[INFO] Error while working with Postgres",ex)
     return -1
@@ -72,7 +67,6 @@ def add_tables():
     add_to_database(sql)
 
 def add_employee(employee):
-    # print(employee)
     add=f"""INSERT INTO "Employee"(firstname,lastname,department_id,number,position)
             VALUES('{employee.firstname}','{employee.lastname}','{int(employee.department)}','{employee.number}','{employee.position}');"""
     add_to_database(add)
@@ -100,7 +94,6 @@ def get_all_departments():
                               FROM "Department";""")
     departments=[]
     for i in get:
-        # print(i)
         departments.append(department.Department(i[0],i[1]))
     return departments
 
@@ -169,12 +162,3 @@ def delete_project(id):
   add_to_database(f"""DELETE 
                       FROM "Project"
                       WHERE "Project".id = '{int(id)}';""")
-
-def add_employees_from_json():
-  pass
-
-def add_departments_from_json():
-  pass
-
-def add_project_from_json():
-  pass

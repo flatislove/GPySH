@@ -1,43 +1,18 @@
 import json
+from config import file_path 
 import model.database_operation as db
 import model.employee as employee
 import model.department as department
 import model.project as project
 
-def export_employee_to_json():
-    data=db.get_all_employee()
+def export_to_json(objects,filename,obj_name):
+    data=objects
     ret_list=[]
     for i in data:
         ret_list.append(json.dumps(i.__dict__))
     try:
-        with open('GPyS8H/files/employee.json','w',encoding='utf-8') as jsonfile:
-            jsonfile.write('{'+'\n'+'"employees":'+'\n'+'['+',\n'.join(ret_list)+']'+'\n'+'}')
-    except Exception as ex:
-        print("[INFO] Error while working with export to JSON",ex)
-        return -1
-    return 1
-    
-def export_departments_to_json():
-    data=db.get_all_departments()
-    ret_list=[]
-    for i in data:
-        ret_list.append(json.dumps(i.__dict__))
-    try:
-        with open('GPyS8H/files/department.json','w',encoding='utf-8') as jsonfile:
-            jsonfile.write('{'+'\n'+'"departments":'+'\n'+'['+',\n'.join(ret_list)+']'+'\n'+'}')
-    except Exception as ex:
-        print("[INFO] Error while working with export to JSON",ex)
-        return -1
-    return 1
-
-def export_projects_to_json():
-    data=db.get_all_projects()
-    ret_list=[]
-    for i in data:
-        ret_list.append(json.dumps(i.__dict__))
-    try:
-        with open('GPyS8H/files/projects.json','w',encoding='utf-8') as jsonfile:
-            jsonfile.write('{'+'\n'+'"projects":'+'\n'+'['+',\n'.join(ret_list)+']'+'\n'+'}')
+        with open(f'{file_path}{filename}','w',encoding='utf-8') as jsonfile:
+            jsonfile.write('{'+'\n'+f'"{obj_name}":'+'\n'+'['+',\n'.join(ret_list)+']'+'\n'+'}')
     except Exception as ex:
         print("[INFO] Error while working with export to JSON",ex)
         return -1
@@ -47,14 +22,14 @@ def import_employee_from_json():
     current_employees=db.get_all_employee()
     current_department=db.get_all_departments()
     try:
-        with open('GPyS8H/files/employee.json') as f:
+        with open(f'{file_path}employee.json') as f:
             data = json.load(f)
         for json_obj in data['employees']:
             contain=False
             for emp in current_employees:
                 if int(json_obj["id"])==emp.id: 
                     contain=True
-                    print("[INFO] Employee already exists")
+                    print(f"[INFO] Employee {emp.firstname} {emp.lastname} already exists")
                     break
             if not contain:
                 exist_department=False
@@ -70,7 +45,7 @@ def import_employee_from_json():
 def import_departments_from_json():
     current_department=db.get_all_departments()
     try:
-        with open('GPyS8H/files/department.json') as f:
+        with open(f'{file_path}department.json') as f:
             data = json.load(f)
         for json_obj in data['departments']:
             contain=False
@@ -89,7 +64,7 @@ def import_projects_from_json():
     current_employees=db.get_all_employee()
     current_projects=db.get_all_projects()
     try:
-        with open('GPyS8H/files/projects.json') as f:
+        with open(f'{file_path}projects.json') as f:
             data = json.load(f)
         for json_obj in data['projects']:
             contain=False
