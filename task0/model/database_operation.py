@@ -68,7 +68,7 @@ def add_tables():
     add_to_database(sql)
 
 def add_employee(employee):
-    print(employee)
+    # print(employee)
     add=f"""INSERT INTO "Employee"(firstname,lastname,department_id,number,position)
             VALUES('{employee.firstname}','{employee.lastname}','{int(employee.department)}','{employee.number}','{employee.position}');"""
     add_to_database(add)
@@ -96,7 +96,7 @@ def get_all_departments():
                               FROM "Department";""")
     departments=[]
     for i in get:
-        print(i)
+        # print(i)
         departments.append(department.Department(i[0],i[1]))
     return departments
 
@@ -132,7 +132,7 @@ def get_employee_by_name(name):
   return employees
 
 def get_employee_by_project(project):
-    pass
+  pass
 
 def get_employee_by_number(number):
   pass

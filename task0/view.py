@@ -88,7 +88,7 @@ def add_employee_view(departments):
         for i in departments:
             print(i)
             str_dep+=str(i.id)
-        print(str_dep)
+        # print(str_dep)
         while(True):
             department=input("enter department id:")
             if department in str_dep: break
@@ -150,3 +150,14 @@ def get_employees_by_department_view(data):
 def get_employees_by_name_view():
     header("Employee by name")
     return input("enter part of firstname or lastname: ")
+
+def get_employees_by_project_view(data):
+    header("Employee by project")
+    str_proj=""
+    for i in data:
+        print(i)
+        str_proj+=str(i.id)
+    print()
+    while(True):
+        pro=input("enter id project:")
+        if pro in str_proj: return pro

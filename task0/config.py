@@ -3,4 +3,3 @@ user="flvtisv"
 password="123456"
 db_name="python_s8"
 port="5432"
-

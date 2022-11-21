@@ -1,9 +1,9 @@
-import view
+import view as view
 import model.database_operation as db
 import model.department as dep_mod
 import model.project as proj
 import model.employee as emp
-import model.service as service
+import service
 
 #menu
 
@@ -126,7 +126,13 @@ def get_employees_by_department():
 def get_employee_by_name():
     name=view.get_employees_by_name_view()
     data=db.get_employee_by_name(name)
-    view.get_employee_view(data)
+    if len(data)==0:
+        view.show_red_string("Результаты не найдены")
+        input("press any key: ")
+    else: 
+        view.get_employee_view(data)
+    menu_get_with_parameter()
+
 
 def get_employee_by_project():
     pass
