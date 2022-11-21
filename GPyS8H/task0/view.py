@@ -22,8 +22,9 @@ def menu_view():
         print("1 Add")
         print("2 Get")
         print("3 Get with parameter")
-        print("4 Export")
-        print("5 Import")
+        print("4 Delete")
+        print("5 Export")
+        print("6 Import")
         print()
         action=input("Введите действие: ")
         if action in "012345": return action
@@ -58,6 +59,16 @@ def get_menu_parameter_view():
         print()
         action=input("enter action:")
         if action in "01234": return action
+
+def delete_menu_view():
+    while(True):
+        header("Delete")
+        print("1 delete employee")
+        print("2 delete department")
+        print("3 delete project")
+        print()
+        action=input("enter action:")
+        if action in "0123": return action
 
 def export_menu_view():
     while(True):
@@ -161,3 +172,56 @@ def get_employees_by_project_view(data):
     while(True):
         pro=input("enter id project:")
         if pro in str_proj: return pro
+
+def get_employee_by_number_view():
+    header("Employee by number")
+    return input("enter part of number: ")
+
+def delete_employee_view(data):
+    header("Delete employee by Id")
+    if not data:
+        show_red_string("no data to delete...")
+        input("press any key: ")
+        return -1
+    else:
+        str_emp=""
+        for i in data:
+            print(i)
+            str_emp+=str(i.id)
+        print()
+        while(True):
+            employee_id=input("enter employee Id:")
+            if employee_id in str_emp:
+                return employee_id
+
+def delete_department_view(data):
+    header("Delete department by Id")
+    if not data:
+        show_red_string("no data to delete...")
+        input("press any key: ")
+        return -1
+    else:
+        str_dep=""
+        for i in data:
+            print(i)
+            str_dep+=str(i.id)
+        print()
+        while(True):
+            department_id=input("enter department Id:")
+            if department_id in str_dep: return department_id
+
+def delete_project_view(data):
+    header("Delete project by Id")
+    if not data:
+        show_red_string("no data to delete...")
+        input("press any key: ")
+        return -1 
+    else:
+        str_proj=""
+        for i in data:
+            print(i)
+            str_proj+=str(i.id)
+        print()
+        while(True):
+            project_id=input("enter project Id:")
+            if project_id in str_proj: return project_id

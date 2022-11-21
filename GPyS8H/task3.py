@@ -20,4 +20,4 @@ def thesaurus(data):
         dictionary.update({i:names})
     return dictionary
 
-# print(thesaurus(employees))
+print(thesaurus(employees))

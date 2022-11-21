@@ -21,7 +21,7 @@ def get_from_database(text):
   finally:
     if connection:
       connection.close()
-      print("[INFO] Postgres connection closed")
+      # print("[INFO] Postgres connection closed")
 
 def add_to_database(add):
   try:
@@ -34,7 +34,7 @@ def add_to_database(add):
     connection.autocommit=True
     with connection.cursor() as cursor:
         cursor.execute(add)
-        print("[INFO] Data was successfully inserted")
+        # print("[INFO] Data was successfully inserted")
 
   except Exception as ex:
     print("[INFO] Error while working with Postgres",ex)
@@ -57,6 +57,7 @@ def add_tables():
             number varchar(15),
             position varchar(30),
             FOREIGN KEY (department_id) REFERENCES "Department" (Id)
+            ON DELETE CASCADE
             );
         
         CREATE TABLE IF NOT EXISTS "Project"(
@@ -64,6 +65,7 @@ def add_tables():
             name varchar(50) NOT NULL,
             employee_id integer NOT NULL,
             FOREIGN KEY (employee_id) REFERENCES "Employee" (Id)
+            ON DELETE CASCADE
             );"""
     add_to_database(sql)
 
@@ -132,8 +134,45 @@ def get_employee_by_name(name):
   return employees
 
 def get_employee_by_project(project):
-  pass
+  get=get_from_database(f"""SELECT "Employee".firstname, "Employee".lastname, "Employee".position, "Project".name
+                              FROM public."Employee"
+                                LEFT JOIN "Project"
+	                                ON "Employee".id="Project".employee_id
+                              WHERE "Project".id='{project}';""")
+  employees=[]
+  for i in get:
+    employees.append(employee.Employee_By(i[0],i[1],i[2]))
+  return employees
 
 def get_employee_by_number(number):
+  get=get_from_database(f"""SELECT "Employee".firstname, "Employee".lastname, "Employee".number
+                              FROM public."Employee"
+                              WHERE "Employee".number LIKE '%{number}%'""")
+  employees=[]
+  for i in get:
+    employees.append(employee.Employee_By(i[0],i[1],i[2]))
+  return employees
+
+def delete_employee(id):
+  add_to_database(f"""DELETE 
+                      FROM "Employee"
+                      WHERE "Employee".id = '{int(id)}';""")
+
+def delete_department(id):
+  add_to_database(f"""DELETE 
+                      FROM "Department"
+                      WHERE "Department".id = '{int(id)}';""")
+
+def delete_project(id):
+  add_to_database(f"""DELETE 
+                      FROM "Project"
+                      WHERE "Project".id = '{int(id)}';""")
+
+def add_employees_from_json():
   pass
 
+def add_departments_from_json():
+  pass
+
+def add_project_from_json():
+  pass

@@ -1,15 +1,15 @@
 import json
 
-def upload_to_json(data):#employee,department,project
-    new_l=[]
-    for i in data:
-        new_l.append(json.dumps(i.__dict__))
-    try:
-        with open(f"data", 'w', encoding='utf-8') as jsonfile:
-            jsonfile.write('{'+'\n'+'"data":'+'\n'+'['+',\n'.join(new_l)+']'+'\n'+'}')
-    except Exception as ex:
-        print("[INFO] Error while working with upload to Json: ",ex)
-    return 1
+# def upload_to_json(data):#employee,department,project
+#     new_l=[]
+#     for i in data:
+#         new_l.append(json.dumps(i.__dict__))
+#     try:
+#         with open(f"data", 'w', encoding='utf-8') as jsonfile:
+#             jsonfile.write('{'+'\n'+'"data":'+'\n'+'['+',\n'.join(new_l)+']'+'\n'+'}')
+#     except Exception as ex:
+#         print("[INFO] Error while working with upload to Json: ",ex)
+#     return 1
 
     #all data for employee(for export json)
 
@@ -31,5 +31,20 @@ def upload_to_json(data):#employee,department,project
     # SELECT "Department".name
     # FROM public."Department"
 
-def import_from_json():#employee,department,project
+def export_employee_to_json():
+    pass
+
+def export_departments_to_json():
+    pass
+
+def export_projects_to_json():
+    pass
+
+def import_employee_from_json():#employee,department,project
+    pass
+
+def import_departments_from_json():
+    pass
+
+def import_projects_from_json():
     pass

@@ -16,8 +16,10 @@ def menu():
     if action=="3":
         menu_get_with_parameter()
     if action=="4":
-        menu_export()
+        menu_delete()
     if action=="5":
+        menu_export()
+    if action=="6":
         menu_import()
     if action=="0":
         exit()
@@ -54,6 +56,17 @@ def menu_get_with_parameter():
         get_employee_by_project()
     if get=="4":
         get_employee_by_number()
+    if get=="0":
+        menu()
+
+def menu_delete():
+    get=view.delete_menu_view()
+    if get=="1":
+        delete_employee()
+    if get=="2":
+        delete_department()
+    if get=="3":
+        delete_project()
     if get=="0":
         menu()
 
@@ -122,23 +135,54 @@ def get_employees_by_department():
     department=view.get_employees_by_department_view(data_dep)
     data=db.get_employee_by_department(department)
     view.get_employee_view(data)
+    menu_get_with_parameter()
 
 def get_employee_by_name():
     name=view.get_employees_by_name_view()
     data=db.get_employee_by_name(name)
-    if len(data)==0:
+    if not len(data):
         view.show_red_string("Результаты не найдены")
         input("press any key: ")
     else: 
         view.get_employee_view(data)
     menu_get_with_parameter()
 
-
 def get_employee_by_project():
-    pass
+    data_proj=db.get_all_projects()
+    project=view.get_employees_by_project_view(data_proj)
+    data=db.get_employee_by_project(project)
+    view.get_employee_view(data)
+    menu_get_with_parameter()
 
 def get_employee_by_number():
-    pass
+    number=view.get_employee_by_number_view()
+    data=db.get_employee_by_number(number)
+    if not len(data):
+        view.show_red_string("Результаты не найдены")
+        input("press any key: ")
+    else: 
+        view.get_employee_view(data)
+    menu_get_with_parameter()
+
+#delete
+
+def delete_employee():
+    emp_data=db.get_all_employee()
+    id=view.delete_employee_view(emp_data) 
+    if id!=-1: db.delete_employee(id)    
+    menu_delete()
+
+def delete_department():
+    dep_data=db.get_all_departments()
+    id=view.delete_department_view(dep_data)
+    if id!=-1: db.delete_department(id)
+    menu_delete()
+
+def delete_project():
+    proj_data=db.get_all_projects()
+    id=view.delete_employee_view(proj_data)
+    if id!=-1: db.delete_employee(id)
+    menu_delete()
 
 #export
 
