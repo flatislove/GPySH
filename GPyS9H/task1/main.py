@@ -44,4 +44,20 @@ def main():
         if new_game==1: main()
         elif new_game==2: exit()
 
+# вариант работы из требований  
+# def main():
+#     board = tic_tac_toe.TicTacToeBoard()
+#     print(*board.get_field(), sep="\n")
+#     print(board.make_move(1, 1))
+#     print(*board.get_field(), sep="\n")
+#     print(board.make_move(1, 1))
+#     print(board.make_move(1, 2))
+#     print(*board.get_field(), sep="\n")
+#     print(board.make_move(2, 1))
+#     print(board.make_move(2, 2))
+#     print(board.make_move(3, 1))
+#     print(board.make_move(2, 2))
+#     print(*board.get_field(), sep="\n")
+
 main()
+
