@@ -60,5 +60,5 @@ def get_range(number_quarter):
 def get_distance(ax,ay,bx,by):
     return round(math.sqrt(math.pow(bx-ax,2)+math.pow(by-ay,2)),23)
 
-#print(get_distance(int(input('Введите A(x): ')),int(input('Введите A(y): ')),
-#int(input('Введите B(x): ')),int(input('Введите B(y): '))))
+print(get_distance(int(input('Введите A(x): ')),int(input('Введите A(y): ')),
+int(input('Введите B(x): ')),int(input('Введите B(y): '))))
