@@ -11,7 +11,7 @@ import operation_stat as s
 # вычислить невозможно, метод result должен возвращать None.
 
 #Сценарий из требований
-
+print("Сценарий 1")
 values=[1,2,4,5]
 mins=s.MinStat()
 maxs=s.MaxStat()
@@ -21,13 +21,13 @@ for v in values:
     maxs.add_number(v)
     average.add_number(v)
 print(mins.result(),maxs.result(),'{:<05.3}'.format(average.result()))
-
+print("\nСценарий 2")
 values=[1,2,4,5]
 mins=s.MinStat()
 maxs=s.MaxStat()
 average=s.AverageStat()
 print(mins.result(),maxs.result(),average.result())
-
+print("\nСценарий 3")
 values=[1,0,0]
 mins=s.MinStat()
 maxs=s.MaxStat()
