@@ -10,9 +10,4 @@ def get_bot_count(current_count,min_value,max_value,difficult):
     if difficult==2:
         return randint(min_value,max_value) if current_count>max_value else current_count
     elif difficult==3:
-        if current_count<=max_value: return current_count
-        else:
-            tmp=current_count
-            while(tmp>max_value+1):tmp-=(max_value+1)
-            for i in range(max_value+1):
-                if tmp-i==0: return i
+        return (current_count-((current_count//max_value)*(max_value+1))) if current_count%(max_value+1)!=0 else max_value
