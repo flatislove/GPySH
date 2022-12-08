@@ -6,5 +6,12 @@ def sum_digits(number):
     for i in list(number):
         sum+=int(i) if i.isnumeric() else 0
     print(f"Сумма цифр вещественного числа={sum}")
+
+def sumdigits(number):
+    sum=0
+    sum+=[lambda x: x.isnumeric() for x in number]
+    print(sum)
     
-sum_digits(input('Введите вещественное число:'))
+number=input('Введите вещественное число:')
+sum_digits(number)
+sumdigits(number)

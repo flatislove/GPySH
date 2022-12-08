@@ -11,10 +11,8 @@ def get_input_number(message):
             print(f"[INFO] Ошибка ввода {ex}")
 
 def get_input_int_list():
-    numbers=[]
     count=get_input_number("Введите количество чисел: ")
-    for _ in range(count):
-        numbers.append(get_input_number("Введите число: "))
+    numbers=[get_input_number("Введите число: ") for _ in range(count)]
     return numbers
 
 def get_sum_odd_position_list(list):

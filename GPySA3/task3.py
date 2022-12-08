@@ -6,8 +6,7 @@ import random as r
 
 def get_input_float_list():
     numbers=[]
-    for _ in range(r.randint(2,10)):
-        numbers.append(float(str(r.randint(0,20))+'.'+str(r.randint(0,999))))
+    numbers=[float(str(r.randint(0,20))+'.'+str(r.randint(0,999))) for _ in range(r.randint(2,10))]
     return numbers
 
 def get_fractional_min_max_difference(numbers):
