@@ -41,8 +41,7 @@ def solve(expression: str):
                 operations.append(expression[pointer])
             pointer += 1
     if len(numbers) == 0 and len(operations) == 0:
-        log.add(
-            f"Не распознаны операнды: {expression}", log.Status.debug.value)
+        log.add(f"Не распознаны операнды: {expression}", log.Status.debug.value)
         return negative_expression
     while (len(operations) > 0 and len(numbers) > 1):
         numbers[1] = str(check_button_calc(
@@ -105,10 +104,8 @@ def get_brackets_expression(expression):
     while ("(" in expression and ")" in expression):
         match_substring = re.search('\([^\(\)]+\)', expression)
         if match_substring != None:
-            expr_with_brackets = expression[match_substring.start(
-            ):match_substring.end()]
-            expr = expression[match_substring.start() +
-                              1:match_substring.end()-1]
+            expr_with_brackets = expression[match_substring.start():match_substring.end()]
+            expr = expression[match_substring.start() +1:match_substring.end()-1]
             expr = str(expr)
             left_bracket = match_substring.start()-1
             right_bracket = match_substring.end()

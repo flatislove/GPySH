@@ -22,10 +22,8 @@ def menu():
 
 def menu_buttons_calc():
     view.header("Кнопочный калькулятор")
-    first_number = view.input_number(-1000000,
-                                     1000000, "Введите число", f"{neg_message}")
-    second_number = view.input_number(-1000000,
-                                      1000000, "Введите число", f"{neg_message}")
+    first_number = view.input_number(-1000000,1000000, "Введите число", f"{neg_message}")
+    second_number = view.input_number(-1000000,1000000, "Введите число", f"{neg_message}")
     operation = view.input_operation("Введите операцию", f"{neg_message}")
     result = service_calc.check_button_calc(
         first_number, second_number, operation)
@@ -35,8 +33,7 @@ def menu_buttons_calc():
 
 def menu_line_calc():
     view.header("Строчный калькулятор")
-    line = view.input_line(
-        "Введите выражение", f" {neg_message}", f"{example}\n Возможен ввод без пробелов")
+    line = view.input_line("Введите выражение", f" {neg_message}", f"{example}\n Возможен ввод без пробелов")
     result = service_calc.solve(service_calc.get_format_line(line))
     view.show_example_line_calc(line, result)
 
