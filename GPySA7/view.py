@@ -44,9 +44,8 @@ def input_number(min, max, action_mess, neg_mess):
             print(f"{neg_mess}: ")
 
 
-def input_line(action_mess, neg_mess, example):
+def input_line(action_mess, neg_mess):
     while (True):
-        print(example)
         line = input(f"{action_mess}: ")
         if re.match('^[0-9\*\-\+\/\(\)\s\.]+$', line) != None:
             return line

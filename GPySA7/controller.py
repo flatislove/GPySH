@@ -3,8 +3,6 @@ import model.service_calc as service_calc
 import model.logger as log
 
 neg_message: str = "Некорректное значение"
-example: str = "Пример: 10 + 2 * ( 3 - ( 1 / 2 )) + ( 2 + 1 * 2 )"
-
 
 def menu():
     action = view.menu_view()
@@ -33,7 +31,7 @@ def menu_buttons_calc():
 
 def menu_line_calc():
     view.header("Строчный калькулятор")
-    line = view.input_line("Введите выражение", f" {neg_message}", f"{example}\n Возможен ввод без пробелов")
+    line = view.input_line("Введите выражение", f" {neg_message}")
     result = service_calc.solve(service_calc.get_format_line(line))
     view.show_example_line_calc(line, result)
 
