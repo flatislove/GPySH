@@ -25,7 +25,7 @@ async def message_reply(message: types.Message):
     elif message.text == "💾 Ссылка на гит с кодом":
         mode = Number_mode.DEFAULT.name
         await bot.send_sticker(message.chat.id, "CAACAgIAAxkBAAEGrktjjNjTDAJuWz_MA0tEAAGZoo_YZa4AApAZAAKn6UFKS0BguZTHflkrBA")
-        count = await bot.send_message(message.chat.id, "https://github.com/flatislove/derby_bot")
+        count = await bot.send_message(message.chat.id, "https://github.com/flatislove/GPySH/tree/main/GPySA9")
     elif message.text == "👁‍🗨 Что могу?":
         mode = Number_mode.DEFAULT.name
         await bot.send_sticker(message.chat.id, "CAACAgIAAxkBAAEGrk1jjNkBgQhb796wZ-vwpnPkzMMmOgACRiAAAkRbyErWG5mnIxS-aCsE")
