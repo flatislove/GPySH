@@ -1,4 +1,5 @@
 from aiogram import types, Dispatcher
+from aiogram.dispatcher.filters.state import State, StatesGroup
 from create_bot import dp, bot
 from src.config import mode
 import service.service as s
@@ -16,7 +17,9 @@ async def button_message_geo(message: types.Message):
                    text="💾 Ссылка на гит с кодом", callback_data="gitcode"),
                types.InlineKeyboardButton(text="💲 Конвертер BYN/KZT", callback_data="tenge_is"))
     markup.add(types.KeyboardButton(text="🔅 Что по погоде?", request_location=True),
-               types.InlineKeyboardButton(text="🎲 Игра \"Распили конфеты\"", callback_data="game_mode"))
+               types.InlineKeyboardButton(
+                   text="🎲 Игра \"Распили конфеты\"", callback_data="game_mode"),
+               types.InlineKeyboardButton(text="🎲 Игра \"Крестики-нолики\"", callback_data="tic_tac_start"))
     await bot.send_message(message.chat.id, f"Погнали, {message.from_user.username}!", reply_markup=markup)
     await bot.send_sticker(message.chat.id, sticker='CAACAgIAAxkBAAEGqV5jiyw2iRSTw6bH788UxRAvS6u5uAACJxgAApd54UvWARYS3sXfTysE')
 
@@ -28,12 +31,22 @@ async def get_info_messages(message: types.Message):
     await bot.send_message(message.from_user.id, "Команды", reply_markup=s.teams_to_markups())
 
 
+class Form(StatesGroup):
+    firstname = State()
+    lastname = State()
+    team = State()
+    number = State()
+    position = State()
+
+
 @dp.message_handler(commands=['add_player'])
 async def firstname_handler(message: types.Message):
-    await bot.send_message(message.chat.id, f"Еще не реализовано.")
+    await bot.send_message(message.chat.id, f"Еще не реализовано. Осталость установить широкую на широкую.")
     # global mode
+    # await Form.firstname.set()
+    # print(firstname)
     # mode = Number_mode.DEFAULT.value
-    # firstname = await bot.send_message(message.chat.id, 'Введите имя',)
+    # firstname = await bot.send_message(message.chat.id, 'Введите имя')
     # await lastname_handler(firstname)
 
 

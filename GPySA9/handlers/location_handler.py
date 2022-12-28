@@ -9,8 +9,7 @@ async def message_reply_location(message: types.Message):
     global mode
     mode = Number_mode.DEFAULT.value
     if message.location is not None:
-        weather = s.get_weather(message.location.latitude,
-                                message.location.longitude)
+        weather = s.get_weather(message.location.latitude, message.location.longitude)
         await bot.send_sticker(message.chat.id, "CAACAgIAAxkBAAEGsdZjjePC0fBNe2w051trdGs9ApzAyAACmhUAAhjCOUoQthLkmEXldSsE")
         await bot.send_message(message.chat.id, f"Погода за окном такая:\n Температура {weather.get('temperature')} градусов\n Скорость ветра {weather.get('windspeed')}м/с\n")
         await bot.send_message(message.chat.id, f"Кстати, между Вами и офисом гугл {s.get_distance_between_points(message.location.latitude,message.location.longitude)} км")
