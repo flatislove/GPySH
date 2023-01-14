@@ -39,7 +39,7 @@ async def message_reply(message: types.Message):
     elif message.text == "🎲 Игра \"Крестики-нолики\"":
         ttt_game = TicTacToe(randint(0, 1))
         if ttt_game.order == 0:
-            await bot.send_message(message.from_user.id, f"Я начинаю, это я не я решил")
+            await bot.send_message(message.from_user.id, f"Я начинаю, это не я решил")
             stic.mark_cell_bot_action(ttt_game.tic_tac_toe_board)
         elif ttt_game.order == 1:
             await bot.send_message(message.from_user.id, f"Ты начинаешь. Это не я решил")
